@@ -26,3 +26,7 @@ gltf-pipeline -i input.gltf -o output.gltf -d
 ## Transform gltf file to JSX
 
 npx gltfjsx input.gltf --transform
+
+## Additionals
+
+https://dashboard.emailjs.com/
