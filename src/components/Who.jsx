@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import Cube from "./Cube";
 const Section = styled.section`
   height: 100vh;
   scroll-snap-align: center;
@@ -15,7 +18,10 @@ const Container = styled.div`
 `;
 const Left = styled.div`
   flex: 1;
-  position: relative;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Right = styled.div`
@@ -25,9 +31,17 @@ const Right = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+  @media only screen and (max-width: 768px) {
+    align-items: center;
+    text-align: center;
+  }
 `;
+
 const Title = styled.h1`
   font-size: 74px;
+  @media only screen and (max-width: 768px) {
+    font-size: 60px;
+  }
 `;
 const WhatWeDo = styled.div`
   display: flex;
@@ -60,7 +74,14 @@ const Who = () => {
       <Container>
         <Left>
           {/* 3d model */}
-          {/* <Img src="./img/moon.png" /> */}
+          <Canvas camera={{ fov: 25, position: [5, 5, 5] }}>
+            {/* https://threejs.org/docs/#examples/en/controls/OrbitControls.dampingFactor */}
+            <OrbitControls enableDamping={true} enableZoom={false} autoRotate />
+
+            <ambientLight intensity={0.9} />
+            <directionalLight position={[3, 2, 1]} />
+            <Cube />
+          </Canvas>
         </Left>
         <Right>
           <Title>Think outside the square space</Title>
